@@ -19,9 +19,31 @@ namespace BusStation.Controllers
         }
 
         // GET: Cities
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string CitiesDestination, string searchString)
         {
-            return View(await _context.Cities.ToListAsync());
+            IQueryable<string> destinationQuery = from c in _context.Cities
+                                                  orderby c.DestinationCity
+                                                  select c.DestinationCity;
+
+            var cities = from c in _context.Cities
+                         select c;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                cities = cities.Where(s => s.DepartureCity.Contains(searchString));
+            }
+
+            if (!String.IsNullOrEmpty(CitiesDestination))
+            {
+                cities = cities.Where(x => x.DestinationCity == CitiesDestination);
+            }
+
+            var CitiesDestinationVM = new CitiesDestinationViewModel();
+            CitiesDestinationVM.destination = new SelectList(await destinationQuery.Distinct().ToListAsync());
+            CitiesDestinationVM.cities = await cities.ToListAsync();
+
+
+            return View(CitiesDestinationVM);
         }
 
         // GET: Cities/Details/5

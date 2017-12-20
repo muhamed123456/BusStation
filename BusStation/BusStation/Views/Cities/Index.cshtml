@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BusStation.Models.Cities>
+﻿@model BusStation.Models.CitiesDestinationViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -9,57 +9,71 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+<form asp-controller="Cities" asp-action="Index" method="get">
+    <p>
+        Departure City: <input type="text" name="searchString">
+        <input type="submit" value="Search" />
+        Destination City:
+        <select asp-for="CitiesDestination" asp-items="Model.destination">
+            <option value="">All</option>
+        </select>
+
+    </p>
+</form>
+
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.DepartureCity)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DestinationCity)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DepartureTime)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ArrivalTime)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.BusCompany)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Price)
-                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cities[0].DepartureCity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cities[0].DestinationCity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cities[0].DepartureTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cities[0].ArrivalTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cities[0].BusCompany)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cities[0].Price)
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.DepartureCity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DestinationCity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DepartureTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ArrivalTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BusCompany)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.cities)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DepartureCity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DestinationCity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DepartureTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArrivalTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BusCompany)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
