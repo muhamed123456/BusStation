@@ -21,11 +21,9 @@ namespace BusStation.Models
         public string DestinationCity { get; set; }
 
         [Display(Name = "Departure")]
-        [DataType(DataType.Time)]
         public DateTime DepartureTime { get; set; }
 
         [Display(Name = "Arrival")]
-        [DataType(DataType.Time)]
         public DateTime ArrivalTime { get; set; }
 
         [Display(Name = "Bus Company")]

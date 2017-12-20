@@ -23,8 +23,8 @@ namespace BusStation.Models
                      {
                          DepartureCity = "Resen",
                          DestinationCity = "Ohrid",
-                         DepartureTime = DateTime.Parse("01.01.2018 08:00:00"),
-                         ArrivalTime = DateTime.Parse("01.01.2018 08:45:00"),
+                         DepartureTime = DateTime.Parse ("01.01.2018 08:00:00"),
+                         ArrivalTime = DateTime.Parse ("01.01.2018 08:45:00"),
                          BusCompany = "Galeb",
                          Price = 150
                      },
