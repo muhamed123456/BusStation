@@ -39,6 +39,12 @@ namespace BusStation
                 facebookOptions.AppSecret = "3d11eb563c396a1fa50b88eaa54a7f79";
             });
 
+            services.AddAuthentication().AddGoogle(googleOptions =>
+            {
+                googleOptions.ClientId = "615285517187-21lphqve0jjpnlu3e7gu3q9tcmtgrafd.apps.googleusercontent.com";
+                googleOptions.ClientSecret = "JavP-2lX4yzIlYLMLsOqPhkM";
+            });
+
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 
