@@ -33,6 +33,12 @@ namespace BusStation
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
+            services.AddAuthentication().AddFacebook(facebookOptions =>
+            {
+                facebookOptions.AppId = "162053501072670";
+                facebookOptions.AppSecret = "3d11eb563c396a1fa50b88eaa54a7f79";
+            });
+
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 
