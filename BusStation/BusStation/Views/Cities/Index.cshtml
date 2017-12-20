@@ -1,10 +1,10 @@
 ﻿@model BusStation.Models.CitiesDestinationViewModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Cities";
 }
 
-<h2>Index</h2>
+<h2>Cities</h2>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -13,9 +13,9 @@
 <form asp-controller="Cities" asp-action="Index" method="get">
     <p>
         Departure City: <input type="text" name="searchString">
-        <input type="submit" value="Search" />
+        <input type="submit" class="btn btn-info" value="Search" />
         Destination City:
-        <select asp-for="CitiesDestination" asp-items="Model.destination">
+        <select asp-for="CitiesDestination" class="bg-info" asp-items="Model.destination">
             <option value="">All</option>
         </select>
 
